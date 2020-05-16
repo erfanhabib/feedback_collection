@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FEEDBACKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FEEDBACK.dbo.Interest' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Interest">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="post_id" />
+            <PropertyRef Name="has_interest" />
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="post_id" Type="int" Nullable="false" />
+          <Property Name="has_interest" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FEEDBACK.dbo.Partner' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Partner">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FEEDBACK.dbo.Post' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="post_desc" />
+            <PropertyRef Name="entered_on" />
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="parent_id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="post_desc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="entered_on" Type="datetime" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="parent_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="FEEDBACKModelStoreContainer">
+          <EntitySet Name="Interest" EntityType="Self.Interest" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Interest].[id] AS [id], 
+    [Interest].[post_id] AS [post_id], 
+    [Interest].[has_interest] AS [has_interest], 
+    [Interest].[user_id] AS [user_id]
+    FROM [dbo].[Interest] AS [Interest]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Partner" EntityType="Self.Partner" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Partner].[id] AS [id], 
+    [Partner].[name] AS [name]
+    FROM [dbo].[Partner] AS [Partner]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Post" EntityType="Self.Post" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Post].[id] AS [id], 
+    [Post].[post_desc] AS [post_desc], 
+    [Post].[entered_on] AS [entered_on], 
+    [Post].[user_id] AS [user_id], 
+    [Post].[parent_id] AS [parent_id]
+    FROM [dbo].[Post] AS [Post]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FEEDBACKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Interest">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="post_id" />
+            <PropertyRef Name="has_interest" />
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="post_id" Type="Int32" Nullable="false" />
+          <Property Name="has_interest" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Partner">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="post_desc" />
+            <PropertyRef Name="entered_on" />
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="parent_id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="post_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="entered_on" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="parent_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="DBmodel" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Interests" EntityType="Self.Interest" />
+          <EntitySet Name="Partners" EntityType="Self.Partner" />
+          <EntitySet Name="Posts" EntityType="Self.Post" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FEEDBACKModelStoreContainer" CdmEntityContainer="DBmodel">
+          <EntitySetMapping Name="Interests">
+            <EntityTypeMapping TypeName="FEEDBACKModel.Interest">
+              <MappingFragment StoreEntitySet="Interest">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="post_id" ColumnName="post_id" />
+                <ScalarProperty Name="has_interest" ColumnName="has_interest" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Partners">
+            <EntityTypeMapping TypeName="FEEDBACKModel.Partner">
+              <MappingFragment StoreEntitySet="Partner">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="FEEDBACKModel.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="post_desc" ColumnName="post_desc" />
+                <ScalarProperty Name="entered_on" ColumnName="entered_on" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
